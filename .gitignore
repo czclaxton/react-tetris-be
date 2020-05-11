@@ -5,3 +5,4 @@
 .eslintcache
 dist
 package-lock.json
+.env

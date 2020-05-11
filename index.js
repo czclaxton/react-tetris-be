@@ -1,11 +1,22 @@
+require("dotenv").config();
 const server = require("express")();
 
-const port = Number(process.env.PORT) || 8000;
+require("./leaderboard")(server);
+const graphqlHTTP = require("express-graphql");
+const schema = require("./schema");
+
+server.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
+
+const PORT = process.env.PORT || 8000;
 
 server.get("/", (req, res) => {
-  res.send("localhost listens and obeys");
+  res.send("up and running");
 });
 
-server.listen(port, () =>
-  console.log("Server running on http://localhost:8000")
-);
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
