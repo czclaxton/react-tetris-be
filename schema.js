@@ -85,6 +85,23 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+// const Mutation = new GraphQLObjectType({
+//   name: "Mutation",
+//   fields: {
+//     addToLeaderboard: {
+//       type: LeaderboardType,
+//       args: {
+//         name: { type: GraphQLString },
+//         score: { type: GraphQLInt },
+//         date: { type: GraphQLString },
+//       },
+//       resolve(parent, args) {
+//         let leaderboardEntry = new LeaderboardType
+//       }
+//     }
+//   }
+// })
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
 });
