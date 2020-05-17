@@ -1,26 +1,20 @@
-require("dotenv").config();
-const server = require("express")();
-const cors = require("cors");
+require('dotenv').config()
+const cors = require('cors')
+const express = require('express')
+const server = express()
 
-require("./leaderboard")(server);
-const graphqlHTTP = require("express-graphql");
-const schema = require("./schema");
+const corsOptions = {
+  origin: ['http://localhost:3000', 'http://localhost:8000', 'https://react-tetris-leaderboard.herokuapp.com'],
+}
 
-// Allow cross-origin
-server.use(cors());
+server.use(express.json(), cors(corsOptions))
 
-server.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  })
-);
+require('./components')(server)
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000
 
-server.get("/", (req, res) => {
-  res.send("up and running");
-});
+server.get('/', (req, res) => {
+  res.send('up and running')
+})
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`))
