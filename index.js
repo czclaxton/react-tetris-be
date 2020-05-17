@@ -4,7 +4,12 @@ const express = require('express')
 const server = express()
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:8000', 'https://react-tetris-leaderboard.herokuapp.com'],
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'https://react-tetris-leaderboard.herokuapp.com',
+    'https://tetris.connorclaxton.dev/',
+  ],
 }
 
 server.use(express.json(), cors(corsOptions))
