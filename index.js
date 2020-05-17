@@ -3,7 +3,11 @@ const cors = require('cors')
 const express = require('express')
 const server = express()
 
-server.use(express.json(), cors())
+const corsOptions = {
+  origin: ['http://localhost:3000', 'http://localhost:8000', 'https://react-tetris-leaderboard.herokuapp.com'],
+}
+
+server.use(express.json(), cors(corsOptions))
 
 require('./components')(server)
 
